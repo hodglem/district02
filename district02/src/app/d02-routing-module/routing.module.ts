@@ -6,7 +6,8 @@ import { NgModule } from '@angular/core';
 
 const appRoutes = [
     { path: '', redirectTo: 'home', pathMatch : 'full'},
-    {path: 'home', component: HomePageComponent }
+    {path: 'home', component: HomePageComponent },
+    {path: 'aa_dev', component: HomePageComponent }
 ];
 
 @NgModule({
