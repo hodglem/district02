@@ -1,0 +1,22 @@
+div.nav-bar {
+    width : 100%;
+   
+}
+
+div.header-image {
+    text-align : right;
+    width:48%;
+    display: inline-block;
+}
+
+div.hotline {
+    width:48%;
+    text-align : right;
+    display: inline-block;
+}
+
+div.hotline-text {
+    font-weight: bolder;
+    color : #673ab7;
+    text-align: center;
+}
