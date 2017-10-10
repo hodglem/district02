@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-@Component ({
+@Component({
     selector: 'app-home',
     templateUrl: './home-page.component.html',
     styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
+    @Input()
+    headerImage;
 
 }
+
