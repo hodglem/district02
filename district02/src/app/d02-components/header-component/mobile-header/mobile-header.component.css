@@ -20,21 +20,33 @@ div.header-image {
     float:right;
 }
 
-div.hotline {
+div.appleton-hotline {
    text-align : center;
    float:left;
 }
 
-div.hotline-text {
+div.appleton-hotline-text {
     font-weight: bolder;
     color : #673ab7;
     text-align: center;
-    font-size: 8px;
+    font-size: 15px;
 }
+
+div.oshkosh-hotline {
+    text-align : center;
+    float:left;
+ }
+ 
+ div.oshkosh-hotline-text {
+     font-weight: bolder;
+     color : #673ab7;
+     text-align: center;
+     font-size: 15px;
+ }
 
 div.id{
     position: relative;
-    width:35%;
+    width:5%;
     color : #673ab7;
     font-weight: bolder;
     text-align: center;
@@ -68,3 +80,28 @@ div.menu {
     width: 10%;
     float:left;
 }
+
+ /* unvisited link */
+ a:link {
+    text-decoration: none;
+    color:#ff0000;
+}
+
+/* visited link */
+a:visited {
+    text-decoration: none;
+    color:#ff0000;
+}
+
+/* mouse over link */
+a:hover {
+    text-decoration: none;
+    color:#ff0000;
+}
+
+/* selected link */
+a:active {
+    text-decoration: none;
+    color:#ff0000;
+} 
+

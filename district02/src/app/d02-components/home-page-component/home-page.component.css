@@ -1,0 +1,16 @@
+div.welcome-text{
+    margin: 0 auto;
+    width: 80%;
+    padding-top: 2%;
+}
+
+ .header {
+    color : #673ab7;
+    text-align: center;
+}
+
+.body {
+    text-align: justify;
+    letter-spacing: 3px;
+    line-height: 1.8;
+}
