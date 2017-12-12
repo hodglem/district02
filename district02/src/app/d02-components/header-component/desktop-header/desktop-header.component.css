@@ -32,16 +32,19 @@ div.id {
 }
 
 
-div.hotline {
-    display: inline-block;
-    width:30%;
-    padding-left:70%;
+hotline {
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin-top: 10px;
 }
 
 div.hotline-text {
     font-weight: bolder;
     color : #673ab7;
+    font-size: 10px;
     text-align: center;
+    
 }
 div.nav-bar {
     width : 100%;
@@ -107,4 +110,47 @@ div.links-button {
     width: 9%;
     float:left;
 }
+
+.flex-container {
+    padding : 0;
+    margin : 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.flex-item {
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin-top: 10px;
+    
+    line-height: 150px;
+    color: black;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+  }
+
+  .flex-item {
+    padding: 5px;
+    width: 200px;
+    height: 150px;
+    margin-top: 10px;
+    
+    line-height: 150px;
+    color: black;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+  }
+
+  .hotline-p {
+      height : 10px;
+  }
 
