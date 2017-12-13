@@ -1,5 +1,5 @@
 <div class="flex-container">
-    <div class="flex-item">
+    <div class="district-name">
         <div class="hotline-text">
             <p class="hotline-p">District02aa.org</p>
         </div>
@@ -23,14 +23,14 @@
         <div class="flex-container">
             <ng-container *ngIf="isBig; else elseBlock">
                 <div class="flex-button">
-                    <button mat-icon-button>
+                    <button mat-icon-button routerLink="/home">
                         <mat-icon color="secondary">change_history</mat-icon>
                     </button>
                 </div>
                 <div class="flex-button">
                     <button mat-button color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
                     <mat-menu #meetingsMenu>
-                        <button mat-menu-item>List With Maps</button>
+                        <button mat-menu-item routerLink="/meetings">List With Maps</button>
                         <button mat-menu-item>Printable List</button>
                     </mat-menu>
                 </div>
@@ -59,7 +59,7 @@
             </ng-container>
             <ng-template #elseBlock>
                 <div class="flex-container">
-                    <button mat-icon-button class="mobile-flex-button">
+                    <button mat-icon-button class="mobile-flex-button" routerLink="/home">
                         <mat-icon color="secondary">change_history</mat-icon>
                     </button>
                     <button mat-icon-button class="mobile-flex-button" [matMenuTriggerFor]="mobileMenu">
@@ -69,7 +69,7 @@
                         <button mat-menu-item color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
                     </mat-menu>
                     <mat-menu #meetingsMenu="matMenu">
-                        <button mat-menu-item>List With Maps</button>
+                        <button mat-menu-item routerLink="/meetings">List With Maps</button>
                         <button mat-menu-item>Printable List</button>
                     </mat-menu>
                 </div>

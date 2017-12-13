@@ -11,6 +11,8 @@ import { HomePageComponent } from './d02-components/home-page-component/home-pag
 import { DesktopHeaderComponent } from './d02-components/header-component/desktop-header/desktop-header.component';
 import { MobileHeaderComponent } from './d02-components/header-component/mobile-header/mobile-header.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
+import { MeetingsComponent } from './d02-components/meetings-component/meetings.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     HomePageComponent,
     DesktopHeaderComponent,
     MobileHeaderComponent,
+    MeetingsComponent
 
   ],
   imports: [
@@ -30,7 +33,10 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     RoutingModule,
     MatIconModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyC_5Cm5cGQ4iBbSMQAdDoknp1gvvLPiL8A'
+    })
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy }

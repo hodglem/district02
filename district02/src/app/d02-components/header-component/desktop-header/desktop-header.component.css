@@ -154,6 +154,14 @@ div.links-button {
     text-align: center;
   }
 
+  .district-name {
+    display: flex;
+    padding: 5px;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+  }
+
   .hotline-p {
       height : 5px;
       min-height: 20px;
