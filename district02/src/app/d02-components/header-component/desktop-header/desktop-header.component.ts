@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 
 @Component({
@@ -7,9 +8,30 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./desktop-header.component.css']
 })
 
-export class DesktopHeaderComponent {
+export class DesktopHeaderComponent implements OnInit {
     @Input()
     headerImage;
+    innerWidth = 0;
+    isBig = false;
+
+    ngOnInit() {
+        this.innerWidth = window.innerWidth;
+        this.setScreenSize();
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onresize(event) {
+        this.innerWidth = window.innerWidth;
+        this.setScreenSize();
+    }
+
+
+    setScreenSize() {
+        this.isBig = this.innerWidth > 1199 ? true : false;
+    }
+
+
+
 
 
 }
