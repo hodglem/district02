@@ -5,7 +5,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 @Component({
     selector: 'app-desktop-header',
     templateUrl: './desktop-header.component.html',
-    styleUrls: ['./desktop-header.component.css']
+    styleUrls: ['./desktop-header.component.css','../header.component.css']
 })
 
 export class DesktopHeaderComponent implements OnInit {

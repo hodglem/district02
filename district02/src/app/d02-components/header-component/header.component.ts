@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    headerImage = './assets/triangle.png';
+    headerImage = './assets/Logo_AA.svg.png';
     innerHeight = 0;
     innerWidth = 0;
     isMobile = false;

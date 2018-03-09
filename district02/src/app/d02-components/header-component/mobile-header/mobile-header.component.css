@@ -5,10 +5,10 @@ div.header {
     position: relative;
 }
 
-.logo {
+/* .logo {
     position: absolute;
     bottom:0;
-}
+} */
 
 .id-text {
     position: absolute;
@@ -36,7 +36,7 @@ div.oshkosh-hotline {
     text-align : center;
     float:left;
  }
- 
+
  div.oshkosh-hotline-text {
      font-weight: bolder;
      color : #673ab7;
@@ -62,12 +62,12 @@ div.top{
 }
 div.nav-bar {
     width : 100%;
-    
+
 }
 
 div.button-container{
     width:70%;
-    
+
 }
 
 div.anchor {
@@ -103,5 +103,5 @@ a:hover {
 a:active {
     text-decoration: none;
     color:#ff0000;
-} 
+}
 
