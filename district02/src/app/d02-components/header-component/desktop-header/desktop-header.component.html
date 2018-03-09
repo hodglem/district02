@@ -1,79 +1,68 @@
-<div class="flex-container">
-    <div class="district-name">
+<div class="banner" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
+    <div>
         <div class="hotline-text">
-            <p class="hotline-p">District02aa.org</p>
+            <p>District02aa.org</p>
         </div>
     </div>
-    <div class="flex-item">
+    <div>
         <img class="logo" [src]=headerImage>
     </div>
-    <div class="flex-item">
-        <div class="hotline-text">
-            <p class="hotline-p">Appleton Area Hotline</p>
-            <p class="hotline-p">920-731-4331</p>
-            <p class="hotline-p">Oshkosh Area Hotline</p>
-            <p class="hotline-p">920-410-4620</p>
+    <div>
+        <div fxLayout="column">
+            <p>Appleton Area Hotline</p>
+            <p>920-731-4331</p>
+            <p>Oshkosh Area Hotline</p>
+            <p>920-410-4620</p>
         </div>
     </div>
 </div>
 
 
-<div class="flex-nav-container">
-    <mat-toolbar class="flex-nav-bar" color="primary">
-        <div class="flex-container">
-            <ng-container *ngIf="isBig; else elseBlock">
-                <div class="flex-button">
-                    <button mat-icon-button routerLink="/home">
-                        <mat-icon color="secondary">change_history</mat-icon>
-                    </button>
-                </div>
-                <div class="flex-button">
-                    <button mat-button color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
-                    <mat-menu #meetingsMenu>
-                        <button mat-menu-item routerLink="/meetings">List With Maps</button>
-                        <button mat-menu-item>Printable List</button>
-                    </mat-menu>
-                </div>
-                <div class="flex-button">
-                    <button mat-button color="secondary" [matMenuTriggerFor]="infoMenu">Information on AA</button>
-                    <mat-menu #infoMenu>
-                        <button mat-menu-item>Is AA for you?</button>
-                        <button mat-menu-item>12 Steps and 12 Traditions</button>
-                    </mat-menu>
-                </div>
-                <div class="flex-button">
-                    <button mat-button color="secondary">Calendar</button>
-                </div>
-                <div class="flex-button">
-                    <button mat-button color="secondary">Newsletter & Forms</button>
-                </div>
-                <div class="flex-button">
-                    <button mat-button color="secondary">Service Comittees</button>
-                </div>
-                <div class="flex-button">
-                    <button mat-button color="secondary">Contact Information</button>
-                </div>
-                <div class="flex-button">
-                    <button mat-button color="secondary">Helpful Links</button>
-                </div>
-            </ng-container>
-            <ng-template #elseBlock>
-                <div class="flex-container">
-                    <button mat-icon-button class="mobile-flex-button" routerLink="/home">
-                        <mat-icon color="secondary">change_history</mat-icon>
-                    </button>
-                    <button mat-icon-button class="mobile-flex-button" [matMenuTriggerFor]="mobileMenu">
-                       <mat-icon color="secondary">reorder</mat-icon>
-                    </button>
-                    <mat-menu #mobileMenu="matMenu">
-                        <button mat-menu-item color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
-                    </mat-menu>
-                    <mat-menu #meetingsMenu="matMenu">
-                        <button mat-menu-item routerLink="/meetings">List With Maps</button>
-                        <button mat-menu-item>Printable List</button>
-                    </mat-menu>
-                </div>
-            </ng-template>
-        </div>
-    </mat-toolbar>
+<div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+      <mat-toolbar color="primary"
+      fxShow="false" fxShow.lt-md>
+        <button mat-icon-button routerLink="/home">
+            <mat-icon color="secondary">change_history</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+            <mat-icon color="secondary">reorder</mat-icon>
+        </button>
+        <mat-menu #mobileMenu="matMenu">
+            <button mat-menu-item color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
+        </mat-menu>
+        <mat-menu #meetingsMenu="matMenu">
+            <button mat-menu-item routerLink="/meetings">List With Maps</button>
+            <button mat-menu-item>Printable List</button>
+        </mat-menu>
+      </mat-toolbar>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxShow="false" fxShow.gt-sm>
+      <mat-toolbar color="primary">
+        <mat-menu x-postion="before" #mobileMenu="matMenu">
+            <button mat-button color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
+            <mat-menu #meetingsMenu>
+                <button mat-menu-item routerLink="/meetings">List With Maps</button>
+                <button mat-menu-item>Printable List</button>
+            </mat-menu>
+
+            <button mat-button color="secondary" [matMenuTriggerFor]="infoMenu">Information on AA</button>
+            <mat-menu #infoMenu>
+                <button mat-menu-item>Is AA for you?</button>
+                <button mat-menu-item>12 Steps and 12 Traditions</button>
+            </mat-menu>
+
+            <button mat-button color="secondary">Calendar</button>
+
+            <button mat-button color="secondary">Newsletter &amp; Forms</button>
+
+            <button mat-button color="secondary">Service Comittees</button>
+
+            <button mat-button color="secondary">Contact Information</button>
+
+            <button mat-button color="secondary">Helpful Links</button>
+        </mat-menu>
+      </mat-toolbar>
+    </div>
 </div>

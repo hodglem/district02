@@ -1,9 +1,13 @@
-div.header {
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+/* div.header {
     text-align : right;
     width:48%;
     display: inline-block;
     position: relative;
-    
+
 }
 
 div.top{
@@ -44,7 +48,7 @@ div.hotline-text {
     color : #673ab7;
     font-size: 14px;
     line-height: 15px;
-    
+
 }
 div.button-container{
     width:70%;
@@ -56,7 +60,7 @@ div.anchor {
     width: 5%;
     float:left;
     margin-left: -5%;
-    
+
 }
 
 div.meetings-button{
@@ -123,13 +127,13 @@ div.links-button {
     width: 200px;
     height: 150px;
     margin-top: 10px;
-    
+
     line-height: 150px;
     color: black;
     font-weight: bold;
     font-size: 3em;
     text-align: center;
-    
+
   }
 
   .flex-button {
@@ -167,7 +171,7 @@ div.links-button {
       min-height: 20px;
   }
 
-  
+
 .flex-nav-container {
     padding : 0;
     margin : 0;
@@ -196,4 +200,4 @@ div.links-button {
     justify-content: space-around;
     align-items: left;
     justify-content: left;
-}
+}  */
