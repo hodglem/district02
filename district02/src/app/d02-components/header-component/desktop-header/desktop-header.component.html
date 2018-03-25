@@ -1,49 +1,48 @@
-<div class="banner" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly center">
-    <div>
-        <div class="hotline-text">
-            <p>District02aa.org</p>
+<div id="header-container" class="header-container" fxLayout="column">
+    <div class="banner" fxLayout="row" fxLayoutAlign="space-around center" fxFlex="80%">
+        <div fxFlex="10%">
+            <div class="hotline-text">
+                <p>District02aa.org</p>
+            </div>
+        </div>
+        <div fxFlex="70%">
+            <img class="logo" [src]=headerImage>
+        </div>
+        <div fxFlex="20%">
+            <div fxLayout="column">
+                <p>Appleton Area Hotline</p>
+                <p>920-731-4331</p>
+                <p>Oshkosh Area Hotline</p>
+                <p>920-410-4620</p>
+            </div>
         </div>
     </div>
-    <div>
-        <img class="logo" [src]=headerImage>
-    </div>
-    <div>
-        <div fxLayout="column">
-            <p>Appleton Area Hotline</p>
-            <p>920-731-4331</p>
-            <p>Oshkosh Area Hotline</p>
-            <p>920-410-4620</p>
-        </div>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxFlex="20%">
+        <mat-toolbar color="primary" fxShow="true" fxShow.lt-md>
+            <button mat-icon-button routerLink="/home">
+                <mat-icon color="secondary">change_history</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
+                <mat-icon color="secondary">reorder</mat-icon>
+            </button>
+            <mat-menu #mobileMenu="matMenu">
+                <button mat-menu-item color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
+            </mat-menu>
+            <mat-menu #meetingsMenu="matMenu">
+                <button mat-menu-item routerLink="/meetings">List With Maps</button>
+                <button mat-menu-item>Printable List</button>
+            </mat-menu>
+        </mat-toolbar>
     </div>
 </div>
-
-
-<div>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-      <mat-toolbar color="primary"
-      fxShow="false" fxShow.lt-md>
-        <button mat-icon-button routerLink="/home">
-            <mat-icon color="secondary">change_history</mat-icon>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="mobileMenu">
-            <mat-icon color="secondary">reorder</mat-icon>
-        </button>
-        <mat-menu #mobileMenu="matMenu">
-            <button mat-menu-item color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
-        </mat-menu>
-        <mat-menu #meetingsMenu="matMenu">
-            <button mat-menu-item routerLink="/meetings">List With Maps</button>
-            <button mat-menu-item>Printable List</button>
-        </mat-menu>
-      </mat-toolbar>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxShow="false" fxShow.gt-sm>
+<!-- Commenting this out for now. Not sure what the intent was
+    <div fxLayout="row" id="test-div" fxLayoutAlign="space-evenly center" fxShow="true" fxShow.gt-sm>
       <mat-toolbar color="primary">
         <mat-menu x-postion="before" #mobileMenu="matMenu">
             <button mat-button color="secondary" [matMenuTriggerFor]="meetingsMenu">Meetings</button>
             <mat-menu #meetingsMenu>
-                <button mat-menu-item routerLink="/meetings">List With Maps</button>
+                <button mat-menu-item routerLink="/meetings" (click)="
+alert('hai')">List With Maps</button>
                 <button mat-menu-item>Printable List</button>
             </mat-menu>
 
@@ -65,4 +64,4 @@
         </mat-menu>
       </mat-toolbar>
     </div>
-</div>
+-->

@@ -1,4 +1,30 @@
 agm-map {
-    height:300px;
-    width : 300px;
+    height: 100px;
+    width : 200px;
 }
+
+.meetings-card{
+   height: 95%;
+   width:100%;
+   background-color:white;
+}
+
+div.meetings-conatiner{
+    padding-top: 1%;
+    background: #000;
+    background: url("/assets/banner.jpg") center fixed;
+    background-size: 100%;
+    height:100%;
+    width:100%;
+}
+
+.big-cell {
+    width : 700px;
+}
+
+.cell { 
+    width : 50px;
+}
+
+
+

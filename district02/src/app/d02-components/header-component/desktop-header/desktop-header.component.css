@@ -2,6 +2,10 @@
   flex: 1 1 auto;
 }
 
+div.banner {
+    width: 100%;
+}
+
 /* div.header {
     text-align : right;
     width:48%;

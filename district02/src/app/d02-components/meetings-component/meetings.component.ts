@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { MeetingModel } from '../../d02-models/d02-meeting-model';
+import { DataSource } from '@angular/cdk/table';
 
 
 
@@ -9,8 +12,62 @@ import { Component } from '@angular/core';
 })
 
 
-export class MeetingsComponent {
+export class MeetingsComponent implements OnInit {
+
     title = 'Fox Valley Tech Web Meeting';
     lat = 44.2833555;
     lon = -88.4612167;
+    
+    displayedColumns = ['city', 'day', 'time', 'meetingName', 'location', 'address', 'type', 'map'];
+    dataSource = meetings;
+    
+    constructor() { };
+
+    ngOnInit(): void {
+        
+        
+    }
+
+    private readMeetingsFile(): void {
+        
+        
+    }
+
+   
 }
+export interface Element {
+    name: string;
+    position: number;
+    weight: number;
+    symbol: string;
+  }
+  
+  
+
+const model1: MeetingModel = new MeetingModel();
+const model2: MeetingModel = new MeetingModel();
+const meetings = [];
+model1.city = 'Appleton';
+        model1.day = 'Monday';
+        model1.time = '10:00AM';
+        model1.meetingName = 'Design For Living Group';
+        model1.location = 'First United Methodist Church',
+        model1.address = '325 E Franklin St - Lower Level - Room B101';
+        model1.type = 'Closed/NS';
+        model1.longitude = -88.40167989999998;
+        model1.latitiude = 44.2636251;
+
+        model2.city = 'Appleton';
+        model2.day = 'Monday';
+        model2.time = '7:00PM';
+        model2.meetingName = 'Inspiration';
+        model2.location = 'Casa Clare Treatment Facility';
+        model2.address = '201 S Glenridge Ct';
+        model2.type = 'Closed/WO/NS';
+        model2.longitude = -88.46427019999999;
+        model2.latitiude = 44.260152;
+
+        meetings.push(model1);
+        meetings.push(model2);
+        
+

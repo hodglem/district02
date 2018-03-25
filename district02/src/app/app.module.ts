@@ -2,7 +2,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './d02-routing-module/routing.module';
@@ -30,6 +30,7 @@ import { MeetingsComponent } from './d02-components/meetings-component/meetings.
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
+    MatTableModule,
     RoutingModule,
     MatIconModule,
     MatCardModule,
