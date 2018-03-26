@@ -1,30 +1,56 @@
 agm-map {
     height: 100px;
-    width : 200px;
+    width: 200px;
 }
 
-.meetings-card{
-   height: 95%;
-   width:100%;
-   background-color:white;
+.meetings-card {
+    height: 80%;
+    background-color: white;
+    overflow: auto;
 }
 
-div.meetings-conatiner{
-    padding-top: 1%;
+div.meetings-conatiner {
     background: #000;
-    background: url("/assets/banner.jpg") center fixed;
+    background: url("../../../assets/banner.jpg") center fixed;
     background-size: 100%;
-    height:100%;
-    width:100%;
+    height: 85%;
+    max-height : 85%;
+    width: 100%;
 }
 
-.big-cell {
-    width : 700px;
+.header-cell {
+    font-size: 1.3vh;
+    text-align: center;
+    padding: 1.5%;
+    
 }
 
-.cell { 
-    width : 50px;
+.cell {
+    font-size: 1.3vh;
+    text-align: center;
+    padding: 1.5%;
 }
 
+.header-cell {
+    font-size: 1.3vh;
+    text-align: center;
+}
 
+.mat-header-cell {
+    color: #673ab7;
+    font-size: 1.3vh;
+    font-weight: bold;
+}
 
+.no-wrap-cell {
+    font-size: 1.3vh;
+    text-align: center;
+    padding: 1.5%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-width : 12%;
+}
+
+.nav-icon {
+    color :#228b22;
+}

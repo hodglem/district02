@@ -1,13 +1,13 @@
 <app-header></app-header>
 
 
-<div class="meetings-conatiner" fxFlexLayout="row" fxLayoutAlign="space-around center">
+<div class="meetings-conatiner" fxFlex fxFlexLayout="row" fxLayoutAlign="space-around center">
 
-    <mat-card id="meetings-card" color="primary" class="meetings-card" fxFlex="80%" fxLayout="row">
-        <mat-table #table [dataSource]="dataSource">
+    <mat-card id="meetings-card" color="primary"  class="meetings-card" fxFlex="90%" fxFlexLayout="row">
+        <mat-table #table [dataSource]="dataSource" fxFlex="100%">
             <ng-container matColumnDef="city">
                 <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+                <mat-cell *matCellDef="let element" class="header-cell"> {{element.city}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="day">
                 <mat-header-cell *matHeaderCellDef>Day</mat-header-cell>
@@ -18,7 +18,7 @@
                 <mat-cell *matCellDef="let element" class="cell"> {{element.time}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="meetingName">
-                <mat-header-cell *matHeaderCellDef>Meeting Name</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
                 <mat-cell *matCellDef="let element" class="cell"> {{element.meetingName}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="location">
@@ -35,14 +35,14 @@
             </ng-container>
             <ng-container matColumnDef="map">
                 <mat-header-cell *matHeaderCellDef>Map</mat-header-cell>
-                <mat-cell *matCellDef="let element" class="big-cell">
-                    <agm-map [latitude]="44.2636251" [longitude]="-88.40167989999998">
-                        <agm-marker [latitude]="44.2636251" [longitude]="-88.40167989999998"></agm-marker>
-                    </agm-map>
+                <mat-cell *matCellDef="let element" class="cell">
+                    <a href="https://www.google.com/maps/?q={{element.latitiude}},{{element.longitude}}" title="maps" target="_blank">
+                        <mat-icon class="nav-icon">navigation</mat-icon>
+                    </a>
                 </mat-cell>
             </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            <mat-header-row class="cell" *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row class="cell" *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
 
 

@@ -10,7 +10,8 @@ const appRoutes = [
     { path: '', redirectTo: 'home', pathMatch : 'full'},
     {path: 'home', component: HomePageComponent },
     {path: 'aa_dev', component: HomePageComponent },
-    {path: 'meetings', component: MeetingsComponent }
+    {path: 'meetings', component: MeetingsComponent },
+    
 ];
 
 @NgModule({
