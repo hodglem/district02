@@ -13,6 +13,8 @@ import { MobileHeaderComponent } from './d02-components/header-component/mobile-
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { MeetingsComponent } from './d02-components/meetings-component/meetings.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MeetingsService } from './d02-services/meetings-service';
 
 @NgModule({
   declarations: [
@@ -35,12 +37,14 @@ import { MeetingsComponent } from './d02-components/meetings-component/meetings.
     MatIconModule,
     MatCardModule,
     FlexLayoutModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey : 'AIzaSyC_5Cm5cGQ4iBbSMQAdDoknp1gvvLPiL8A'
     })
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    MeetingsService
   ],
   bootstrap: [AppComponent]
 })
