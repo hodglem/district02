@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { HomePageComponent } from '../d02-components/home-page-component/home-page.component';
 import { NgModule } from '@angular/core';
 import { MeetingsComponent } from '../d02-components/meetings-component/meetings.component';
+import { EventsComponent }from '../d02-components/events-component/events.component';
 
 
 
@@ -11,6 +12,7 @@ const appRoutes = [
     {path: 'home', component: HomePageComponent },
     {path: 'aa_dev', component: HomePageComponent },
     {path: 'meetings', component: MeetingsComponent },
+	{path: 'events', component: EventsComponent }
     
 ];
 
