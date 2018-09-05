@@ -13,9 +13,10 @@ import { MobileHeaderComponent } from './d02-components/header-component/mobile-
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { MeetingsComponent } from './d02-components/meetings-component/meetings.component';
-import { EventsComponent } from '../d02-components/events-component/events.component';
+
 import { HttpClientModule } from '@angular/common/http';
 import { MeetingsService } from './d02-services/meetings-service';
+import { EventsComponent } from './d02-components/events-component/events.component';
 
 @NgModule({
   declarations: [
