@@ -17,8 +17,7 @@ export class MeetingsService {
 
     public getMeetings(): Observable<Meetings[]> {
         this.typedMeetings.length = 0;
-
-        return this.httpClient.get<Meetings[]>(this.url).map(
+        return this.httpClient.get<Meetings[]>(this.url, this.getHeaders()).map(
             resp => this.extractMeetings(resp),
             err => this.handleError(err)
 
@@ -46,8 +45,7 @@ export class MeetingsService {
         const pw = 'pw';
         const h = {
             headers: new HttpHeaders({
-                'Authorization': `Basic ${user} : ${pw}`,
-                'Accept': 'application/json'
+                'Authorization': `Basic ${btoa(user)} : ${btoa(pw)}`
             })
         };
         return h;

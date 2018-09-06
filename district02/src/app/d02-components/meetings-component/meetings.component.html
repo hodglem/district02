@@ -4,10 +4,48 @@
 <div class="meetings-conatiner" fxFlex fxFlexLayout="row" fxLayoutAlign="space-around center">
 
     <mat-card id="meetings-card" color="primary" class="meetings-card" fxFlex="90%" fxFlexLayout="row">
-        <mat-table #table [dataSource]="dataSource" fxFlex="100%">
+        <mat-table #table [dataSource]="dataSource" matSort fxFlex="100%">
             <ng-container matColumnDef="city">
-                <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
-                <mat-cell *matCellDef="let element" class="header-cell"> {{element.meetingLocation.city.name}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>City</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="header-cell"> {{element.meetingLocation.city.name}}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="day">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Day</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell"> {{getDayOfTheWeek(element.meetingOccur.day)}}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="time">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Time</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell"> {{element.meetingOccur.startTime | date:'shortTime'}}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell"> {{element.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="location">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Location</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell"> {{element.meetingLocation.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="address">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell"> {{element.meetingLocation.address}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell"> {{getDisplayedTypes(element.optionses)}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="map">
+                <mat-header-cell *matHeaderCellDef>Map</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="cell">
+                    <a href="https://www.google.com/maps/?q={{element.meetingLocation.lat}},{{element.meetingLocation.lon}}"
+                        title="maps" target="_blank">
+                        <mat-icon class="nav-icon">navigation</mat-icon>
+                    </a>
+                </mat-cell>
+                <mat-cell *matCellDef="let element" class="header-cell"> {{element.meetingLocation.city.name}}
+                </mat-cell>
             </ng-container>
             <mat-header-row class="cell" *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row class="cell" *matRowDef="let row; columns: displayedColumns;"></mat-row>
