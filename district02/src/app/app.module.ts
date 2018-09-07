@@ -2,7 +2,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './d02-routing-module/routing.module';
@@ -17,6 +17,8 @@ import { MeetingsComponent } from './d02-components/meetings-component/meetings.
 import { HttpClientModule } from '@angular/common/http';
 import { MeetingsService } from './d02-services/meetings-service';
 import { EventsComponent } from './d02-components/events-component/events.component';
+import { AdminComponent } from './d02-components/admin-component/admin.component';
+import { MeetingManagerComponent } from './d02-components/managers/meeting-management-component/meeting-manager-component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { EventsComponent } from './d02-components/events-component/events.compon
     DesktopHeaderComponent,
     MobileHeaderComponent,
     MeetingsComponent,
-    EventsComponent
+    EventsComponent,
+    AdminComponent,
+    MeetingManagerComponent
 
   ],
   imports: [
@@ -43,8 +47,12 @@ import { EventsComponent } from './d02-components/events-component/events.compon
     HttpClientModule,
     MatSortModule,
     MatPaginatorModule,
+    MatExpansionModule,
+    MatTabsModule,
+    MatExpansionModule,
+
     AgmCoreModule.forRoot({
-      apiKey : 'AIzaSyC_5Cm5cGQ4iBbSMQAdDoknp1gvvLPiL8A'
+      apiKey: 'AIzaSyC_5Cm5cGQ4iBbSMQAdDoknp1gvvLPiL8A'
     })
   ],
   providers: [

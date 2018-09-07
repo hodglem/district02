@@ -4,7 +4,7 @@ agm-map {
 }
 
 .meetings-card {
-    height: 80%;
+    height: 99%;
     background-color: white;
     overflow: auto;
 }
@@ -14,7 +14,7 @@ div.meetings-conatiner {
     background: url("../../../assets/banner.jpg") center fixed;
     background-size: 100%;
     height: 85%;
-    max-height : 85%;
+    max-height: 85%;
     width: 100%;
 }
 
@@ -22,7 +22,6 @@ div.meetings-conatiner {
     font-size: 1.3vh;
     text-align: center;
     padding: 1.5%;
-    
 }
 
 .cell {
@@ -48,9 +47,17 @@ div.meetings-conatiner {
     padding: 1.5%;
     text-overflow: ellipsis;
     overflow: hidden;
-    min-width : 12%;
+    min-width: 12%;
 }
 
 .nav-icon {
-    color :#228b22;
+    color: #228b22;
+}
+
+.ra-header-row {
+    position: sticky;
+    top: 0;
+    opacity: 100;
+    background: white !important;
+    z-index: 2;
 }
