@@ -2,7 +2,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './d02-routing-module/routing.module';
@@ -18,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MeetingsService } from './d02-services/meetings-service';
 import { EventsComponent } from './d02-components/events-component/events.component';
 import { AdminComponent } from './d02-components/admin-component/admin.component';
-import { MeetingManagerComponent } from './d02-components/managers/meeting-management-component/meeting-manager-component';
+import { MeetingManagerComponent } from './d02-components/managers/meeting/meeting-management-component/meeting-manager-component';
+import { AddMeetingComponent } from './d02-components/managers/meeting/add-meeting/add-meeting.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { MeetingManagerComponent } from './d02-components/managers/meeting-manag
     MeetingsComponent,
     EventsComponent,
     AdminComponent,
-    MeetingManagerComponent
+    MeetingManagerComponent,
+    AddMeetingComponent
 
   ],
   imports: [
@@ -50,6 +53,10 @@ import { MeetingManagerComponent } from './d02-components/managers/meeting-manag
     MatExpansionModule,
     MatTabsModule,
     MatExpansionModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatInputModule,
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC_5Cm5cGQ4iBbSMQAdDoknp1gvvLPiL8A'

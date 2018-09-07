@@ -1,0 +1,26 @@
+<div fxLayout="row">
+    <mat-form-field>
+        <mat-select placeholder="City">
+            <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Day">
+            <mat-option *ngFor="let day of days" [value]="day.id">{{day.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+        Hour
+        <mat-slider thumbLabel tickInterval="1"></mat-slider>
+        Minute
+        <mat-slider thumbLabel tickInterval="1"></mat-slider>
+    </div>
+    <mat-form-field>
+        <input matInput placeholder="Meeting Name">
+    </mat-form-field>
+    <mat-form-field>
+            <mat-select placeholder="Location">
+                <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}} {{loc.address}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+</div>
