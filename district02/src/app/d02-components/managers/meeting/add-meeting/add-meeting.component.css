@@ -1,0 +1,13 @@
+.time-slider-container {
+    height: 100%;
+}
+
+.time-value-container {
+    height: 100%;
+    font-weight: bolder;
+}
+
+.time-value-container {
+    color: #673ab7;
+    font-weight: bolder;
+}

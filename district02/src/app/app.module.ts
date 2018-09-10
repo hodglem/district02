@@ -2,7 +2,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule, MatRadioModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './d02-routing-module/routing.module';
@@ -20,7 +20,8 @@ import { EventsComponent } from './d02-components/events-component/events.compon
 import { AdminComponent } from './d02-components/admin-component/admin.component';
 import { MeetingManagerComponent } from './d02-components/managers/meeting/meeting-management-component/meeting-manager-component';
 import { AddMeetingComponent } from './d02-components/managers/meeting/add-meeting/add-meeting.component';
-
+import { FormsModule } from '@angular/forms';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,8 @@ import { AddMeetingComponent } from './d02-components/managers/meeting/add-meeti
     MatSelectModule,
     MatSliderModule,
     MatInputModule,
+    FormsModule,
+    MatRadioModule,
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC_5Cm5cGQ4iBbSMQAdDoknp1gvvLPiL8A'

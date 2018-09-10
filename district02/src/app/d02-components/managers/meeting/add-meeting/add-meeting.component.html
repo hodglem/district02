@@ -1,26 +1,56 @@
-<div fxLayout="row">
-    <mat-form-field>
-        <mat-select placeholder="City">
-            <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-        <mat-select placeholder="Day">
-            <mat-option *ngFor="let day of days" [value]="day.id">{{day.name}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <div>
-        Hour
-        <mat-slider thumbLabel tickInterval="1"></mat-slider>
-        Minute
-        <mat-slider thumbLabel tickInterval="1"></mat-slider>
+<div fxLayout="column" fxLayoutGap="5%">
+    <div fxFlex="33%">
+        <mat-form-field>
+            <input matInput placeholder="Meeting Name">
+        </mat-form-field>
     </div>
-    <mat-form-field>
-        <input matInput placeholder="Meeting Name">
-    </mat-form-field>
-    <mat-form-field>
+    <div fxLayout="row" fxFlex="33%" fxLayoutGap="5%">
+        <mat-form-field fxFlex="15%">
+            <mat-select placeholder="City">
+                <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="15%">
+            <mat-select placeholder="Day">
+                <mat-option *ngFor="let day of days" [value]="day.id">{{day.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div fxFlex="15%" fxLayout="row">
+            <div fxFlex="50%" fxLayout="column" ngClass="time-slider-container">
+                <div>Hour</div>
+                <mat-slider color="primary" min="1" max="12" thumbLabel tickInterval="1" [(ngModel)]="hourValue"></mat-slider>
+                <div>Minute</div>
+                <mat-slider min="0" max="59" thumbLabel tickInterval="1" color="primary" [(ngModel)]="minuteValue"></mat-slider>
+                <mat-radio-group [(ngModel)]="amPm">
+                    <mat-radio-button color="primary" value="0">AM</mat-radio-button>
+                    <mat-radio-button color="primary" value="1">PM</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div fxFlex="15%" ngClass="time-value-container" fxLayout="row">
+            <div ngClass="time-value">Meeting Time : {{hourValue}} :
+                {{minuteValue | number : '2.0-0'}} {{getAmPmText(amPm)}}</div>
+        </div>
+    </div>
+    <div fxFlex="33%" fxLayoutGap="5%" fxLayout="row">
+        <mat-form-field fxFlex="15%">
             <mat-select placeholder="Location">
                 <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}} {{loc.address}}</mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field fxFlex="15%">
+            <mat-select placeholder="Meeting Options" multiple="true">
+                <mat-option *ngFor="let option of options" [value]="option.id">{{option.meetingOption}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="15%">
+            <input matInput placeholder="Latitude">
+        </mat-form-field>
+        <mat-form-field fxFlex="15%">
+            <input matInput placeholder="Longitude">
+        </mat-form-field>
+        <div fxFlex="15%">
+            <button mat-raised-button color="primary">Add</button>
+        </div>
+    </div>
 </div>

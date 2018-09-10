@@ -14,7 +14,11 @@ export class AddMeetingComponent implements OnInit {
     cities: City[] = [];
     days: Object[];
     locations: MeetingLocation[] = [];
-    option: Options[] = [];
+    options: Options[] = [];
+    hourValue = 7;
+    minuteValue = 0;
+    amPm = 0;
+
     ngOnInit(): void {
 
         for (let i = 0; i < 10; i++) {
@@ -27,7 +31,12 @@ export class AddMeetingComponent implements OnInit {
             l.name = `Place ${i}`;
             l.address = '12345 Daive Rd';
             this.locations.push(l);
-            //
+
+
+            const o = new Options();
+            o.id = i;
+            o.meetingOption = `option${i}`;
+            this.options.push(o);
         }
 
         this.days = [
@@ -41,5 +50,16 @@ export class AddMeetingComponent implements OnInit {
         ];
 
 
+    }
+
+    getAmPmText(radioValue: string): string {
+        switch (parseInt(radioValue, 10)) {
+            case (0):
+                return 'AM';
+            case (1):
+                return 'PM';
+            default:
+                return 'ERROR';
+        }
     }
 }
