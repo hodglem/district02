@@ -18,6 +18,7 @@ export class MeetingLocation implements Serializable<MeetingLocation> {
         this.name = input.name;
         this.lat = input.lat;
         this.lon = input.lon;
+        this.address = input.address;
 
         if (input.meetingses !== undefined) {
             input.meetingses.array.forEach(element => {

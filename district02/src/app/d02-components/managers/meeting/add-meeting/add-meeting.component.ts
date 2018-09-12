@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { City } from '../../../../classes/city';
 import { MeetingLocation } from '../../../../classes/meeting-location';
 import { Options } from '../../../../classes/options';
@@ -11,48 +11,24 @@ import { Options } from '../../../../classes/options';
 })
 
 export class AddMeetingComponent implements OnInit {
-    cities: City[] = [];
+    @Input('cities')
+    cities: City[];
+    @Input('locations')
+    locations: MeetingLocation[];
+    @Input('options')
+    options: Options[];
     days: Object[];
-    locations: MeetingLocation[] = [];
-    options: Options[] = [];
     hourValue = 7;
     minuteValue = 0;
     amPm = 0;
+    selectedCityId = 0;
 
     ngOnInit(): void {
-
-        for (let i = 0; i < 10; i++) {
-            const c = new City();
-            c.name = `City ${i}`;
-            this.cities.push(c);
-
-            const l = new MeetingLocation();
-            l.id = i;
-            l.name = `Place ${i}`;
-            l.address = '12345 Daive Rd';
-            this.locations.push(l);
-
-
-            const o = new Options();
-            o.id = i;
-            o.meetingOption = `option${i}`;
-            this.options.push(o);
-        }
-
-        this.days = [
-            { 'id': 0, 'name': 'Sunday' },
-            { 'id': 1, 'name': 'Monday' },
-            { 'id': 2, 'name': 'Tuesday' },
-            { 'id': 3, 'name': 'Wednesday' },
-            { 'id': 4, 'name': 'Thursday' },
-            { 'id': 5, 'name': 'Friday' },
-            { 'id': 6, 'name': 'Saturday' },
-        ];
 
 
     }
 
-    getAmPmText(radioValue: string): string {
+    public getAmPmText(radioValue: string): string {
         switch (parseInt(radioValue, 10)) {
             case (0):
                 return 'AM';
@@ -61,5 +37,12 @@ export class AddMeetingComponent implements OnInit {
             default:
                 return 'ERROR';
         }
+    }
+    public getApplicableLocations(): MeetingLocation[] {
+        return this.locations.filter(location => {
+            return location.city.cityId === this.selectedCityId
+                && this.selectedCityId !== 0;
+
+        });
     }
 }

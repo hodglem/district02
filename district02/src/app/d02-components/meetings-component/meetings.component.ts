@@ -25,7 +25,7 @@ export class MeetingsComponent implements OnInit {
 
     ngOnInit(): void {
         // TODO Refactor this to use a resolver
-        this.meetingsService.getMeetings().subscribe(typedMeetings => {
+        this.meetingsService.getTypedObservable().subscribe(typedMeetings => {
             this.dataSource = new MatTableDataSource(this.buildDisplayedMeetings(typedMeetings));
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;

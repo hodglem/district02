@@ -22,6 +22,10 @@ import { MeetingManagerComponent } from './d02-components/managers/meeting/meeti
 import { AddMeetingComponent } from './d02-components/managers/meeting/add-meeting/add-meeting.component';
 import { FormsModule } from '@angular/forms';
 import 'hammerjs';
+import { CityService } from './d02-services/city-service';
+import { LocationService } from './d02-services/location-service';
+import { OptionsService } from './d02-services/options-service';
+import { NumberOnlyDirective } from './d02-directives/number-only.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import 'hammerjs';
     EventsComponent,
     AdminComponent,
     MeetingManagerComponent,
-    AddMeetingComponent
+    AddMeetingComponent,
+    NumberOnlyDirective
 
   ],
   imports: [
@@ -67,7 +72,7 @@ import 'hammerjs';
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    MeetingsService
+    MeetingsService, CityService, LocationService, OptionsService
   ],
   bootstrap: [AppComponent]
 })

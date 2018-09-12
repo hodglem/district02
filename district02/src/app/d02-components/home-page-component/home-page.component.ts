@@ -10,12 +10,12 @@ export class HomePageComponent {
     @Input()
     headerImage;
 
-    constructor (private meetingsService : MeetingsService){
+    constructor(private meetingsService: MeetingsService) {
 
     }
 
-    public getMeetings(){
-        this.meetingsService.getMeetings().subscribe();
+    public getMeetings() {
+
     }
 
 }

@@ -6,8 +6,8 @@
     </div>
     <div fxLayout="row" fxFlex="33%" fxLayoutGap="5%">
         <mat-form-field fxFlex="15%">
-            <mat-select placeholder="City">
-                <mat-option *ngFor="let city of cities" [value]="city.name">{{city.name}}</mat-option>
+            <mat-select placeholder="City" [(value)]="selectedCityId">
+                <mat-option *ngFor="let city of cities" [value]="city.cityId">{{city.name}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="15%">
@@ -35,7 +35,7 @@
     <div fxFlex="33%" fxLayoutGap="5%" fxLayout="row">
         <mat-form-field fxFlex="15%">
             <mat-select placeholder="Location">
-                <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}} {{loc.address}}</mat-option>
+                <mat-option *ngFor="let loc of getApplicableLocations()" [value]="loc.id">{{loc.name}} {{loc.address}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="15%">
@@ -44,10 +44,10 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field fxFlex="15%">
-            <input matInput placeholder="Latitude">
+            <input matInput placeholder="Latitude" appNumberOnly="true">
         </mat-form-field>
         <mat-form-field fxFlex="15%">
-            <input matInput placeholder="Longitude">
+            <input matInput placeholder="Longitude" appNumberOnly="true">
         </mat-form-field>
         <div fxFlex="15%">
             <button mat-raised-button color="primary">Add</button>

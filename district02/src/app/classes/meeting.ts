@@ -14,9 +14,12 @@ export class Meetings implements Serializable<Meetings> {
     public deserialize(input: any) {
         this.meetingLocation = new MeetingLocation().deserialize(input.meetingLocation);
         this.optionses = [];
+        this.id = input.id;
+        this.name = input.name;
+        this.meetingOccur = new MeetingOccur().deserialize(input.meetingOccur);
 
-        if (input.options !== undefined) {
-            input.optionses.array.forEach(element => {
+        if (input.optionses !== undefined) {
+            input.optionses.forEach(element => {
                 this.optionses.push(new Options().deserialize(element));
             });
         }
