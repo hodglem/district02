@@ -26,6 +26,7 @@ import { CityService } from './d02-services/city-service';
 import { LocationService } from './d02-services/location-service';
 import { OptionsService } from './d02-services/options-service';
 import { NumberOnlyDirective } from './d02-directives/number-only.directive';
+import { PostMeetingService } from './d02-services/post-meeting-service';
 
 @NgModule({
   declarations: [
@@ -66,13 +67,14 @@ import { NumberOnlyDirective } from './d02-directives/number-only.directive';
     FormsModule,
     MatRadioModule,
 
+
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC_5Cm5cGQ4iBbSMQAdDoknp1gvvLPiL8A'
     })
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    MeetingsService, CityService, LocationService, OptionsService
+    MeetingsService, CityService, LocationService, OptionsService, PostMeetingService
   ],
   bootstrap: [AppComponent]
 })

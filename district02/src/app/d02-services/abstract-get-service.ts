@@ -5,7 +5,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 export abstract class GetService<T extends Serializable<T>> {
     typedArray: T[] = [];
-    abstract url;
+    abstract url: string;
     protected abstract getNewObject(): T;
 
     constructor(protected httpClient: HttpClient) {
@@ -28,6 +28,7 @@ export abstract class GetService<T extends Serializable<T>> {
     }
 
     protected handleError(error) {
+        alert('Action Failed');
         console.error(error);
     }
 
