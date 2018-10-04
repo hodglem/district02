@@ -2,6 +2,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// tslint:disable-next-line:max-line-length
 import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule, MatRadioModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -18,8 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MeetingsService } from './d02-services/meetings-service';
 import { EventsComponent } from './d02-components/events-component/events.component';
 import { AdminComponent } from './d02-components/admin-component/admin.component';
-import { MeetingManagerComponent } from './d02-components/managers/meeting/meeting-management-component/meeting-manager-component';
-import { AddMeetingComponent } from './d02-components/managers/meeting/add-meeting/add-meeting.component';
+
 import { FormsModule } from '@angular/forms';
 import 'hammerjs';
 import { CityService } from './d02-services/city-service';
@@ -27,6 +27,8 @@ import { LocationService } from './d02-services/location-service';
 import { OptionsService } from './d02-services/options-service';
 import { NumberOnlyDirective } from './d02-directives/number-only.directive';
 import { PostMeetingService } from './d02-services/post-meeting-service';
+import { MeetingManagerComponent } from './d02-components/managers/meeting-manager/meeting-manager.component';
+
 
 @NgModule({
   declarations: [
@@ -38,9 +40,9 @@ import { PostMeetingService } from './d02-services/post-meeting-service';
     MeetingsComponent,
     EventsComponent,
     AdminComponent,
-    MeetingManagerComponent,
-    AddMeetingComponent,
-    NumberOnlyDirective
+    NumberOnlyDirective,
+    MeetingManagerComponent
+
 
   ],
   imports: [
