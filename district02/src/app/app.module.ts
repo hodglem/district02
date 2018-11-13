@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // tslint:disable-next-line:max-line-length
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule, MatRadioModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule, MatRadioModule, MatChipsModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './d02-routing-module/routing.module';
@@ -28,6 +28,7 @@ import { OptionsService } from './d02-services/options-service';
 import { NumberOnlyDirective } from './d02-directives/number-only.directive';
 import { PostMeetingService } from './d02-services/post-meeting-service';
 import { MeetingManagerComponent } from './d02-components/managers/meeting-manager/meeting-manager.component';
+import { MeetingsTableComponent } from './d02-components/meetings-table-component/meetings-table.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MeetingManagerComponent } from './d02-components/managers/meeting-manag
     EventsComponent,
     AdminComponent,
     NumberOnlyDirective,
-    MeetingManagerComponent
+    MeetingManagerComponent,
+    MeetingsTableComponent
 
 
   ],
@@ -68,6 +70,7 @@ import { MeetingManagerComponent } from './d02-components/managers/meeting-manag
     MatInputModule,
     FormsModule,
     MatRadioModule,
+    MatChipsModule,
 
 
     AgmCoreModule.forRoot({

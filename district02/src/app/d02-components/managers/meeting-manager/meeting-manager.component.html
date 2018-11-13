@@ -1,50 +1,56 @@
-<div fxLayout="column" fxLayoutGap="5%">
-    <div fxFlex="33%">
-        <mat-form-field>
-            <input matInput placeholder="Meeting Name" [(ngModel)]='enteredName'>
-        </mat-form-field>
-    </div>
-    <div fxLayout="row" fxFlex="33%" fxLayoutGap="5%">
-        <mat-form-field fxFlex="15%">
-            <mat-select placeholder="City" [(ngModel)]="selectedCity" required>
-                <mat-option *ngFor="let city of cities" [value]="city">{{city.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field fxFlex="15%">
-            <mat-select placeholder="Day" [(ngModel)]="selectedDay" required>
-                <mat-option *ngFor="let day of days" [value]="day">{{day.name}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div fxFlex="15%" fxLayout="row">
-            <div fxFlex="50%" fxLayout="column" ngClass="time-slider-container">
-                <div>Hour</div>
-                <mat-slider color="primary" min="1" max="12" thumbLabel tickInterval="1" [(ngModel)]="hourValue"></mat-slider>
-                <div>Minute</div>
-                <mat-slider min="0" max="59" thumbLabel tickInterval="1" color="primary" [(ngModel)]="minuteValue"></mat-slider>
-                <mat-radio-group [(ngModel)]="selectedAmPm">
-                    <mat-radio-button color="primary" [value]="amPm[0]">{{amPm[0].name}}</mat-radio-button>
-                    <mat-radio-button color="primary" [value]="amPm[1]">{{amPm[1].name}}</mat-radio-button>
-                </mat-radio-group>
-            </div>
-        </div>
-        <div fxFlex="15%" ngClass="time-value-container" fxLayout="row">
-            <div ngClass="time-value">Meeting Time : {{hourValue}} :
+<div fxLayout="column">
+    <div fxFlex="20%" fxLayout="column">
+        <div fxFlex="20%" fxLayout="row">
+            <mat-form-field fxFlex="20%">
+                <input matInput placeholder="Meeting Name" [(ngModel)]='enteredName'>
+            </mat-form-field>
+            <div fxFlex="30%" fxFlexOffset="30%" ngClass="time-value">Meeting Time : {{hourValue}} :
                 {{minuteValue | number : '2.0-0'}} {{selectedAmPm.name}}</div>
         </div>
-    </div>
-    <div fxFlex="33%" fxLayoutGap="5%" fxLayout="row">
-        <mat-form-field fxFlex="15%">
-            <mat-select placeholder="Location" [(ngModel)]="selectedLocation" required>
-                <mat-option *ngFor="let loc of getApplicableLocations()" [value]="loc">{{loc.name}} {{loc.address}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field fxFlex="15%">
-            <mat-select placeholder="Meeting Options" [(ngModel)]="selectedOptions" multiple required>
-                <mat-option *ngFor="let option of options" [value]="option">{{option.meetingOption}}</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <div fxFlex="15%">
-            <button mat-raised-button color="primary" (click)='addMeeting()'>Add</button>
+        <div fxFlex="30%" fxLayout="row">
+            <div fxFlex="5%">Hour</div>
+            <mat-slider fxFlex="10%" color="primary" min="1" max="12" thumbLabel tickInterval="1" [(ngModel)]="hourValue"></mat-slider>
+            <div fxFlex="5%">Minute</div>
+            <mat-slider fxFlex="10%" fxFlexOffset="2%" min="0" max="59" thumbLabel tickInterval="1" color="primary"
+                [(ngModel)]="minuteValue"></mat-slider>
+            <mat-radio-group fxFlex="15%" fxFlexOffset="5%" [(ngModel)]="selectedAmPm">
+                <mat-radio-button color="primary" [value]="amPm[0]">{{amPm[0].name}}</mat-radio-button>
+                <mat-radio-button color="primary" [value]="amPm[1]">{{amPm[1].name}}</mat-radio-button>
+            </mat-radio-group>
         </div>
+
+        <div fxFlex="20%" fxLayoutGap="5%" fxLayout="row">
+            <mat-form-field fxFlex="20%">
+                <mat-select placeholder="City" [(ngModel)]="selectedCity" required>
+                    <mat-option *ngFor="let city of cities" [value]="city">{{city.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="20%">
+                <mat-select placeholder="Day" [(ngModel)]="selectedDay" required>
+                    <mat-option *ngFor="let day of days" [value]="day">{{day.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="20%">
+                <mat-select placeholder="Location" [(ngModel)]="selectedLocation" required>
+                    <mat-option *ngFor="let loc of getApplicableLocations()" [value]="loc">{{loc.name}} {{loc.address}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="20%">
+                <mat-select placeholder="Meeting Options" [(ngModel)]="selectedOptions" multiple required>
+                    <mat-option *ngFor="let option of options" [value]="option">{{option.meetingOption}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div fxFlex="5%" fxFlexOffset="1%">
+        <button mat-raised-button color="primary" (click)='addMeeting()'>Add</button>
+    </div>
+    <div fxFlex="40%" fxLayout="column" >
+        <div fxFlex="5%" fxLayoutAlign="center center">
+            <mat-chip-list>
+                <mat-chip fxFlex color="primary" selected>Existing Meetings</mat-chip>
+            </mat-chip-list>
+        </div>
+        <app-meetings-table fxFlex="90%" fxFlexOffset="1%" [displayedColumns]='displayedColumns'></app-meetings-table>
     </div>
 </div>

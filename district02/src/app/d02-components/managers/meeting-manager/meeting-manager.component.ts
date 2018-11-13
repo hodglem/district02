@@ -48,6 +48,7 @@ export class MeetingManagerComponent implements OnInit {
     enteredLatitude: number;
     enteredLongitude: number;
     enteredName: string;
+    displayedColumns = ['city', 'day', 'time', 'name', 'location', 'address', 'type', 'map'];
 
     constructor(private postMeetingService: PostMeetingService) {
 

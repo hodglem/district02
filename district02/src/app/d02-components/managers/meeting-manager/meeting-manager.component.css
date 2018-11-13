@@ -11,3 +11,13 @@
     color: #673ab7;
     font-weight: bolder;
 }
+
+div.div1{
+    background-color: blue;
+    width : 100%;
+}
+
+.div2{
+    background-color: green;
+}
+

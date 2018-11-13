@@ -1,16 +1,17 @@
 <app-header></app-header>
+<div>
+    <mat-tab-group>
+        <mat-tab label="Meeting Management">
+                <meeting-manager [cities]="cities" [locations]="locations" [options]="options"></meeting-manager>
+        </mat-tab>
+        <mat-tab label="City Management">
 
-<mat-tab-group>
-    <mat-tab label="Meeting Management">
-            <meeting-manager [cities]="cities" [locations]="locations" [options]="options"></meeting-manager>
-    </mat-tab>
-    <mat-tab label="City Management">
+        </mat-tab>
+        <mat-tab label="Location Management">
 
-    </mat-tab>
-    <mat-tab label="Location Management">
+        </mat-tab>
+        <mat-tab label="Meeting Type Management">
 
-    </mat-tab>
-    <mat-tab label="Meeting Type Management">
-
-    </mat-tab>
-</mat-tab-group>
+        </mat-tab>
+    </mat-tab-group>
+</div>
