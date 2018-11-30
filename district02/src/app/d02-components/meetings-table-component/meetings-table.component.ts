@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { DisplayedMeeting } from '../../classes/displayed-meeting';
 import { Options } from '../../classes/options';
@@ -17,14 +17,21 @@ export class MeetingsTableComponent implements OnInit {
     dataSource: MatTableDataSource<DisplayedMeeting>;
     @Input()
     displayedColumns;
+    @Output()
+    isSelected: EventEmitter<number> = new EventEmitter();
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    displayedMeetings: DisplayedMeeting[] = [];
 
     constructor(private meetingsService: MeetingsService) {
 
     }
 
     ngOnInit(): void {
+        this.refreshMeetings();
+    }
+
+    public refreshMeetings() {
         this.meetingsService.getTypedObservable().subscribe(typedMeetings => {
             this.dataSource = new MatTableDataSource(this.buildDisplayedMeetings(typedMeetings));
             this.dataSource.sort = this.sort;
@@ -32,8 +39,26 @@ export class MeetingsTableComponent implements OnInit {
         });
     }
 
+    public meetingSelected(id: number) {
+
+        this.displayedMeetings.forEach(meeting => {
+
+            if (meeting.id === id && meeting.checked) {
+                this.isSelected.emit(meeting.id);
+                return;
+            } else if (meeting.id === id && !meeting.checked) {
+                this.isSelected.emit(-99);
+                return;
+            }
+
+            meeting.checked = false;
+        }
+        );
+    }
+
+
     private buildDisplayedMeetings(typedMeetings: Meetings[]): DisplayedMeeting[] {
-        const displayedMeetings: DisplayedMeeting[] = [];
+        this.displayedMeetings.length = 0;
 
         typedMeetings.forEach(meeting => {
             const displayedMeeting = new DisplayedMeeting();
@@ -47,10 +72,10 @@ export class MeetingsTableComponent implements OnInit {
             displayedMeeting.type = this.getDisplayedTypes(meeting.optionses);
             displayedMeeting.lat = meeting.meetingLocation.lat;
             displayedMeeting.lon = meeting.meetingLocation.lon;
-            displayedMeetings.push(displayedMeeting);
+            this.displayedMeetings.push(displayedMeeting);
         });
 
-        return displayedMeetings;
+        return this.displayedMeetings;
     }
 
     getDisplayedTypes(optionArray: Options[]): string {

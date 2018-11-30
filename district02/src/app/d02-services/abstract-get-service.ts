@@ -6,6 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export abstract class GetService<T extends Serializable<T>> {
     typedArray: T[] = [];
     abstract url: string;
+    protected cachedArray: T[];
     protected abstract getNewObject(): T;
 
     constructor(protected httpClient: HttpClient) {
@@ -19,11 +20,17 @@ export abstract class GetService<T extends Serializable<T>> {
             err => this.handleError(err)
         );
     }
+
+    public getCachedArray(): T[] {
+        return this.cachedArray;
+    }
+
     protected extractTypedArray(rawJson: any[]): T[] {
         rawJson.forEach(unTypedObject => {
             this.typedArray.push(this.getNewObject().deserialize(unTypedObject));
         });
 
+        this.cachedArray = this.typedArray;
         return this.typedArray;
     }
 

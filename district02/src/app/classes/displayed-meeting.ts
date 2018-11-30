@@ -9,4 +9,5 @@ export class DisplayedMeeting {
     type: string;
     lat: number;
     lon: number;
+    checked = false;
 }

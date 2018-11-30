@@ -6,8 +6,7 @@
             </mat-form-field>
             <div fxFlex fxLayoutAlign="center center">
                 <mat-chip-list>
-                    <mat-chip fxFlex color="primary" selected>Meeting Time : {{hourValue}} :
-                        {{minuteValue | number : '2.0-0'}} {{selectedAmPm.name}}</mat-chip>
+                    <mat-chip fxFlex color="primary" selected>Meeting Time {{hourValue}}:{{minuteValue | number:'2.0-0'}} {{selectedAmPm.name}}</mat-chip>
                 </mat-chip-list>
             </div>
         </div>
@@ -25,7 +24,7 @@
 
         <div fxFlex="20%" fxLayoutGap="5%" fxLayout="row">
             <mat-form-field fxFlex="20%">
-                <mat-select placeholder="City" [(ngModel)]="selectedCity" required>
+                <mat-select #citySelect placeholder="City" [(ngModel)]="selectedCity" required>
                     <mat-option *ngFor="let city of cities" [value]="city">{{city.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -46,8 +45,9 @@
             </mat-form-field>
         </div>
     </div>
-    <div fxFlex="5%" fxFlexOffset="1%">
-        <button mat-raised-button color="primary" (click)='addMeeting()'>Add</button>
+    <div fxFlex="5%" fxFlexOffset="1%" fxLayout="row">
+        <button mat-raised-button color="primary" (click)='actionClicked()'>{{currentAction}}</button>
+        <button mat-raised-button color="primary" *ngIf="rowSelected" fxFlexOffset="1%" (click)='deleteClicked()'>Delete</button>
     </div>
     <div fxFlex="40%" fxLayout="column">
         <div fxFlex="5%" fxLayoutAlign="center center">
@@ -55,6 +55,6 @@
                 <mat-chip fxFlex color="primary" selected>Existing Meetings</mat-chip>
             </mat-chip-list>
         </div>
-        <app-meetings-table fxFlex="90%" fxFlexOffset="1%" [displayedColumns]='displayedColumns'></app-meetings-table>
+        <app-meetings-table #meetingsTable fxFlex="90%" fxFlexOffset="1%" (isSelected)="selectionEvent($event)" [displayedColumns]='displayedColumns'></app-meetings-table>
     </div>
 </div>

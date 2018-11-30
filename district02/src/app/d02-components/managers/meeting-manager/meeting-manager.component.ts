@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { City } from '../../../classes/city';
 import { MeetingLocation } from '../../../classes/meeting-location';
 import { Options } from '../../../classes/options';
@@ -7,12 +7,19 @@ import { Day } from '../../../d02-interfaces/day-interface';
 import { Meetings } from '../../../classes/meeting';
 import { MeetingOccur } from '../../../classes/meeting-occur';
 import { PostMeetingService } from '../../../d02-services/post-meeting-service';
+import { MeetingsService } from '../../../d02-services/meetings-service';
+import { DatePipe } from '@angular/common';
+import { PutMeetingsService } from '../../../d02-services/put-meeting-service';
+import { MeetingsTableComponent } from '../../meetings-table-component/meetings-table.component';
+import { DeleteMeetingsService } from '../../../d02-services/delete-meetings-service';
+
 
 @Component({
     // tslint:disable-next-line:component-selector
     selector: 'meeting-manager',
     templateUrl: './meeting-manager.component.html',
-    styleUrls: ['./meeting-manager.component.css']
+    styleUrls: ['./meeting-manager.component.css'],
+    providers: [DatePipe]
 })
 
 export class MeetingManagerComponent implements OnInit {
@@ -22,8 +29,10 @@ export class MeetingManagerComponent implements OnInit {
     locations: MeetingLocation[];
     @Input('options')
     options: Options[];
-    @Input('selectedMeeting')
     selectedMeeting: Meetings;
+    @ViewChild('citySelect') citySelect;
+    @ViewChild('meetingsTable') table: MeetingsTableComponent;
+
     days: Day[] = [
         { 'id': 0, 'name': 'Sunday' },
         { 'id': 1, 'name': 'Monday' },
@@ -45,20 +54,19 @@ export class MeetingManagerComponent implements OnInit {
     selectedLocation: MeetingLocation;
     selectedLocation1: MeetingLocation;
     selectedOptions: Options[];
-    enteredLatitude: number;
-    enteredLongitude: number;
     enteredName: string;
-    displayedColumns = ['city', 'day', 'time', 'name', 'location', 'address', 'type', 'map'];
+    displayedColumns = ['select', 'city', 'day', 'time', 'name', 'location', 'address', 'type', 'map'];
+    currentAction: Action = Action.ADD;
+    rowSelected = false;
 
-    constructor(private postMeetingService: PostMeetingService) {
+    constructor(private postMeetingService: PostMeetingService, private meetingsService: MeetingsService,
+        private datePipe: DatePipe, private putMeetingService: PutMeetingsService,
+        private deleteMeetingServices: DeleteMeetingsService) {
+
 
     }
 
     ngOnInit(): void {
-
-        if (this.selectedMeeting !== undefined) {
-            this.setDefaultMeeting();
-        }
 
     }
 
@@ -74,17 +82,30 @@ export class MeetingManagerComponent implements OnInit {
     }
 
     public getApplicableLocations(): MeetingLocation[] {
+        if (this.selectedCity === null) {
+            return [];
+        }
         return this.locations.filter(location => {
             return this.selectedCity !== undefined && location.city.cityId === this.selectedCity.cityId;
         });
     }
 
-    public addMeeting(): void {
-
+    public actionClicked(): void {
         if (this.isValidMeeting()) {
-            this.sendNewMeeting(this.buildMeeting());
-        }
 
+            if (this.currentAction === Action.ADD) {
+                this.sendNewMeeting(this.buildMeeting());
+            } else if (this.currentAction === Action.UPDATE) {
+                this.updateMeeting(this.buildUpdatedMeeting());
+            }
+        }
+    }
+
+    public deleteClicked(): void {
+        this.deleteMeetingServices.deleteItem(this.selectedMeeting.id).subscribe(deletedMeeting => {
+            this.deleteMeeting();
+        }
+        );
     }
 
     public isValidMeeting(): boolean {
@@ -118,29 +139,94 @@ export class MeetingManagerComponent implements OnInit {
         return true;
     }
 
-    private setDefaultMeeting() {
+    public selectionEvent(meetingSelected: number) {
+        if (meetingSelected > 0) {
+            this.meetingsService.getCachedArray().forEach(meeting => {
+
+                if (meeting.id === meetingSelected) {
+                    this.selectedMeeting = meeting;
+                    this.populcateSelectedMeetingMeeting();
+                    this.currentAction = Action.UPDATE;
+                    this.rowSelected = true;
+                }
+            }
+            );
+        } else {
+            this.currentAction = Action.ADD;
+            this.rowSelected = false;
+            this.defaultForm();
+        }
+    }
+
+    private populcateSelectedMeetingMeeting() {
         this.enteredName = this.selectedMeeting.name;
-        this.selectedCity = this.selectedMeeting.meetingLocation.city;
-        this.selectedDay = this.days.filter(day => {
+        this.setSelectedCity();
+        this.setSelectedDay();
+        this.setSelectedLocation();
+        this.setSelectedTime();
+        this.setSelectedOptions();
+    }
 
-            if (this.selectedMeeting.meetingOccur.day === day.id) {
-                return day;
+    private setSelectedCity() {
+        this.cities.forEach(city => {
+
+            if (city.cityId === this.selectedMeeting.meetingLocation.city.cityId) {
+                this.selectedCity = city;
             }
+        }
+        );
+    }
 
-        })[0];
-        const timeString = this.selectedMeeting.meetingOccur.startTime.toLocaleString
-            ('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-        this.hourValue = parseInt(timeString.split(':')[0], 10);
-        this.hourValue = parseInt(timeString.split(':')[1], 10);
-        this.selectedAmPm = this.amPm.filter(ampm => {
+    private setSelectedTime() {
+        this.hourValue = parseInt(this.datePipe.transform(this.selectedMeeting.meetingOccur.startTime, 'h'), 10);
+        this.minuteValue = parseInt(this.datePipe.transform(this.selectedMeeting.meetingOccur.startTime, 'mm'), 10);
+        this.amPm.forEach(amPm => {
 
-            if (ampm.name === timeString.split(' ')[1]) {
-                return ampm;
+            if (amPm.name === this.datePipe.transform(this.selectedMeeting.meetingOccur.startTime, 'a')) {
+                this.selectedAmPm = amPm;
             }
-        })[0];
+        });
 
-        this.selectedLocation = this.selectedMeeting.meetingLocation;
-        this.selectedOptions = this.selectedMeeting.optionses;
+    }
+
+    private setSelectedDay() {
+        this.days.forEach(day => {
+
+            if (day.id === this.selectedMeeting.meetingOccur.day) {
+                this.selectedDay = day;
+            }
+        }
+        );
+    }
+
+    private setSelectedLocation() {
+        this.getApplicableLocations().forEach(location => {
+
+            if (location.id === this.selectedMeeting.meetingLocation.id) {
+                this.selectedLocation = location;
+            }
+        }
+        );
+    }
+
+    private setSelectedOptions() {
+
+        if (this.selectedOptions === undefined) {
+            this.selectedOptions = [];
+        }
+
+        this.selectedOptions.length = 0;
+        this.options.forEach(option => {
+
+            this.selectedMeeting.optionses.forEach(selectedOption => {
+
+                if (option.id === selectedOption.id) {
+                    this.selectedOptions.push(option);
+                }
+            });
+
+        }
+        );
     }
 
     private buildMeeting(): Meetings {
@@ -151,6 +237,17 @@ export class MeetingManagerComponent implements OnInit {
         newMeeting.meetingOccur = this.buildMeetingOccur();
         return newMeeting;
 
+    }
+
+    private buildUpdatedMeeting(): Meetings {
+        const updatedMeeting = new Meetings();
+        updatedMeeting.id = this.selectedMeeting.id;
+        updatedMeeting.meetingLocation = this.selectedLocation;
+        updatedMeeting.name = this.enteredName;
+        updatedMeeting.optionses = this.selectedOptions;
+        updatedMeeting.meetingOccur = this.buildMeetingOccur();
+        updatedMeeting.meetingOccur.id = this.selectedMeeting.meetingOccur.id;
+        return updatedMeeting;
     }
 
     private buildMeetingOccur(): MeetingOccur {
@@ -167,6 +264,56 @@ export class MeetingManagerComponent implements OnInit {
     private sendNewMeeting(newMeeting: Meetings): void {
         console.log(newMeeting);
         // TODO Need to add a progress spinner here
-        this.postMeetingService.getPOSTObeservable(newMeeting).subscribe(addedMeeting => alert('Meeting Added'));
+        this.postMeetingService.getPOSTObeservable(newMeeting).subscribe(addedMeeting => {
+            alert('Meeting Added');
+            this.refreshForm();
+        }
+        );
     }
+
+    private updateMeeting(updatedMeeting: Meetings): void {
+        console.log(updatedMeeting);
+        this.putMeetingService.getPutObservable(updatedMeeting).subscribe(uMeeting => {
+            alert('Meeting Updated');
+            this.refreshForm();
+        }
+        );
+    }
+
+    private deleteMeeting(): void {
+        alert('Meeting Deleted');
+        this.refreshForm();
+    }
+
+    private refreshForm(): void {
+        this.selectedCity = null;
+        this.selectedDay = null;
+        this.selectedAmPm = this.amPm[0];
+        this.selectedLocation = null;
+        this.selectedLocation1 = null;
+        this.selectedOptions = undefined;
+        this.enteredName = null;
+        this.table.refreshMeetings();
+        this.rowSelected = false;
+        this.currentAction = Action.ADD;
+        console.log(this.selectedOptions);
+    }
+
+    public defaultForm() {
+        this.selectedCity = null;
+        this.selectedDay = null;
+        this.selectedAmPm = this.amPm[0];
+        this.selectedLocation = null;
+        this.selectedLocation1 = null;
+        this.selectedOptions = undefined;
+        this.enteredName = null;
+        this.rowSelected = false;
+        this.currentAction = Action.ADD;
+        console.log(this.selectedOptions);
+    }
+}
+
+enum Action {
+    ADD = 'Add',
+    UPDATE = 'Update'
 }

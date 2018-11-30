@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // tslint:disable-next-line:max-line-length
-import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule, MatRadioModule, MatChipsModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatMenuModule, MatIconModule, MatCardModule, MatTableModule, MatSortModule, MatPaginatorModule, MatExpansionModule, MatTabsModule, MatFormFieldModule, MatSelectModule, MatSlider, MatSliderModule, MatInputModule, MatRadioModule, MatChipsModule, MatCheckboxModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './d02-routing-module/routing.module';
@@ -29,6 +29,8 @@ import { NumberOnlyDirective } from './d02-directives/number-only.directive';
 import { PostMeetingService } from './d02-services/post-meeting-service';
 import { MeetingManagerComponent } from './d02-components/managers/meeting-manager/meeting-manager.component';
 import { MeetingsTableComponent } from './d02-components/meetings-table-component/meetings-table.component';
+import { PutMeetingsService } from './d02-services/put-meeting-service';
+import { DeleteMeetingsService } from './d02-services/delete-meetings-service';
 
 
 @NgModule({
@@ -71,6 +73,7 @@ import { MeetingsTableComponent } from './d02-components/meetings-table-componen
     FormsModule,
     MatRadioModule,
     MatChipsModule,
+    MatCheckboxModule,
 
 
     AgmCoreModule.forRoot({
@@ -79,7 +82,8 @@ import { MeetingsTableComponent } from './d02-components/meetings-table-componen
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    MeetingsService, CityService, LocationService, OptionsService, PostMeetingService
+    MeetingsService, CityService, LocationService, OptionsService, PostMeetingService,
+    PutMeetingsService, DeleteMeetingsService
   ],
   bootstrap: [AppComponent]
 })

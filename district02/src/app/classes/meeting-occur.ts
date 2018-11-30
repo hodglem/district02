@@ -12,8 +12,8 @@ export class MeetingOccur implements Serializable<MeetingOccur> {
     deserialize(input: any): MeetingOccur {
         this.id = input.id;
         this.day = input.day;
-        this.startTime = input.startTime;
-        this.endTime = input.endTime;
+        this.startTime = new Date(input.startTime);
+        this.endTime = new Date(input.endTime);
 
         if (input.meetingses !== undefined) {
             this.meetingses = [];
